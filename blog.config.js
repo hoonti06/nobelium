@@ -3,7 +3,7 @@ const BLOG = {
   author: '김지훈',
   email: 'hoonti06@gmail.com',
   link: 'https://nobelium.vercel.app',
-  description: 'This gonna be an awesome website.',
+  description: 'hoonti06 경험 정리',
   lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   timezone: 'Asia/Seoul', // Your Notion posts' date will be interpreted as this timezone. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for all options.
   appearance: 'light', // ['light', 'dark', 'auto'],
@@ -13,7 +13,7 @@ const BLOG = {
   path: '', // leave this empty unless you want to deploy Nobelium in a folder
   since: 2023, // If leave this empty, current year will be used.
   postsPerPage: 7,
-  sortByDate: false,
+  sortByDate: true,
   showAbout: true,
   showArchive: true,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
