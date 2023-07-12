@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { createElement as h } from 'react'
 import dynamic from 'next/dynamic'
 import { NotionRenderer as Renderer } from 'react-notion-x'
@@ -5,6 +6,7 @@ import { getTextContent } from 'notion-utils'
 import { FONTS_SANS, FONTS_SERIF } from '@/consts'
 import { useConfig } from '@/lib/config'
 import Toggle from '@/components/notion-blocks/Toggle'
+// import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -96,7 +98,11 @@ const components = {
   )
 }
 
-const mapPageUrl = id => `https://www.notion.so/${id.replace(/-/g, '')}`
+
+
+
+// const mapPageUrl = id => `https://hoonti06.gitlab.io/${id.replace(/-/g, '')}`
+
 
 /**
  * Notion page renderer
@@ -112,6 +118,14 @@ export default function NotionRenderer (props) {
     'sans-serif': FONTS_SANS,
     'serif': FONTS_SERIF
   }[config.font]
+
+  const siteMapPageUrl = React.useMemo(() => {
+    const params = {}
+    if (lite) params.lite = lite
+
+    const searchParams = new URLSearchParams(params)
+    return mapPageUrl(props.recordMap, searchParams)
+  }, [recordMap, lite])
 
   // Mark block types to be custom rendered by appending a suffix
   if (props.recordMap) {
@@ -135,7 +149,7 @@ export default function NotionRenderer (props) {
       </style>
       <Renderer
         components={components}
-        mapPageUrl={mapPageUrl}
+        mapPageUrl={siteMapPageUrl}
         {...props}
       />
     </>
