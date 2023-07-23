@@ -45,7 +45,7 @@ MyApp.getInitialProps = async ctx => {
   prepareDayjs(config.timezone)
 
   return {
-    ...App.getInitialProps(ctx),
+    ...await App.getInitialProps(ctx),
     config,
     locale: await loadLocale('basic', config.lang)
   }
